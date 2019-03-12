@@ -10,7 +10,17 @@ full_land_data <- read.csv("data/FAOSTAT_landuse.csv", stringsAsFactors = FALSE)
 df <- read.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_world_gdp_with_codes.csv", stringsAsFactors = FALSE)
 
 navbarPage(
-  "Map of Land use",
+  "UN FAO Data Analysis",
+  
+  tabPanel(
+    "Introduction",
+    titlePanel("What this analysis looks at"), 
+   p("The Food and Agriculture Organization ", strong("FAO"), "is a specialized agency of the United Nations that leads international efforts to defeat hunger."),
+    p("This analysis project utilizes datasets which are collected and compiled by the Food and Agriculture Organization of the United Nations. This project specifically
+      looks at the datasets of", strong("Annual population, Land Use, Economic Macroindicators, Energy Use, and Food Security,"), "to answer questions about if there is 
+      a correlation between these domains."),
+   img("", src = "http://www.fao.org/uploads/pics/FAO_logo_Blue_3lines_en_01.jpg", align = "center"))
+  ,
   
   tabPanel(
     "Choropleth",
