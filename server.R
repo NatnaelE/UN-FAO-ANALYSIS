@@ -2,12 +2,15 @@ library("dplyr")
 library("tidyr")
 library("ggplot2")
 library("plotly")  
+#LOAD ALL DATA SETS HERE AT THE BEGINNING
 countries <- read.csv("data/countries_long_lat.csv", stringsAsFactors = FALSE)
 full_pop_data <- read.csv("data/FAOSTAT_population.csv", stringsAsFactors = FALSE)
 full_land_data <- read.csv("data/FAOSTAT_landuse.csv", stringsAsFactors = FALSE)
 df <- read.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_world_gdp_with_codes.csv", stringsAsFactors = FALSE)
 
+
 my_server <- function(input, output){
+#--------------------------------------------CHOROPLETH PAGE------------------------------------------------------------------------------------------------- 
   output$choropleth <- renderPlotly({
     
     land_data <- full_land_data %>%
@@ -86,4 +89,23 @@ my_server <- function(input, output){
     
      
   })
-}
+  #--------------------------------------------END CHOROPLETH PAGE--------------------------------------------------------------------------------------------  
+  
+  #--------------------------------------------MACROINDICATOR PAGE--------------------------------------------------------------------------------------------
+  
+  
+  
+  #--------------------------------------------END MACROINDICATOR PAGE----------------------------------------------------------------------------------------
+  
+  #--------------------------------------------FOOD-SECURITY PAGE--------------------------------------------------------------------------------------------- 
+  
+  
+  
+  #--------------------------------------------END FOOD-SECURITY PAGE-----------------------------------------------------------------------------------------
+  
+  #--------------------------------------------ENERGYUSE PAGE-------------------------------------------------------------------------------------------------
+  
+  
+  
+  #--------------------------------------------END ENERGYUSE PAGE---------------------------------------------------------------------------------------------
+  }

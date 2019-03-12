@@ -19,7 +19,8 @@ navbarPage(
     p("This analysis project utilizes datasets which are collected and compiled by the Food and Agriculture Organization of the United Nations. This project specifically
       looks at the datasets of", strong("Annual population, Land Use, Economic Macroindicators, Energy Use, and Food Security,"), "to answer questions about if there is 
       a correlation between these domains."),
-   img("", src = "http://www.fao.org/uploads/pics/FAO_logo_Blue_3lines_en_01.jpg", align = "center"))
+   img("", src = "http://www.fao.org/uploads/pics/FAO_logo_Blue_3lines_en_01.jpg", align = "center")
+   )
   ,
   
   tabPanel(
@@ -55,4 +56,18 @@ navbarPage(
           the years after they changed."))
       )
     )
-  ))
+  ),
+  tabPanel(
+    "Macro Indicators"
+    
+  ),
+  tabPanel(
+    "Food Security"
+    
+  ),
+  tabPanel(
+    "Energy Use"
+    
+  )
+  
+  )
