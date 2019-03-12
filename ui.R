@@ -14,7 +14,8 @@ navbarPage(
   
   tabPanel(
     "Choropleth",
-    titlePanel("Choropleth of different types of land use"),
+    titlePanel(strong("Choropleth of different types of land use")),
+    h4("This choropleth shows the change of different types of land over time in every country."),
     sidebarLayout(
       sidebarPanel(
         selectInput(
@@ -39,7 +40,9 @@ navbarPage(
         )
       ),
       mainPanel(
-        plotlyOutput("choropleth")
+        plotlyOutput("choropleth"),
+        p(em("Countries that have changed names, or borders, such as Sudan and South Sudan may have some data missing for 
+          the years after they changed."))
       )
     )
   ))
