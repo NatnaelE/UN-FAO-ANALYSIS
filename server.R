@@ -56,7 +56,7 @@ my_server <- function(input, output){
     df[109, 1] <- "Democratic People's Republic of Korea"
     df[95, 1] <- "Iran (Islamic Republic of)"
     df[108, 1] <- "Republic of Korea"
-    df[113, 1] <- "Lao People's Democratic Republi"
+    df[113, 1] <- "Lao People's Democratic Republic"
     df[123, 1] <- "North Macedonia"
     df[135, 1] <- "Republic of Moldova"
     df <- df[-c(33, 53, 7, 67, 74, 78, 80, 84, 90, 110, 122, 136, 138, 169, 181, 187, 192, 196, 207)]
