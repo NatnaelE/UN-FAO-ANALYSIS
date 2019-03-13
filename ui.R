@@ -34,6 +34,7 @@ navbarPage(
     "Choropleth",
     titlePanel(strong("Choropleth of different types of Agricultural land use")),
     h4("This choropleth shows the change of different types of land over time in every country."),
+    
     sidebarLayout(
       sidebarPanel(
         selectInput(
@@ -55,7 +56,12 @@ navbarPage(
             "Land under perm. meadows and pastures",
             "Land area equipped for irrigation"
           )
-        )
+        ),
+        p(strong("Arable Land - Land capable of being ploughed and used to grow crops")),
+        p(strong("Land Under Permanent Crops - Land that is occupied that crops for long periods, and doesn't need to be replanted after harvests.")),
+        p(strong("Cropland - Areas of land used for the production of adapted crops for harvest.")),
+        p(strong("Land Under Permanent Meadows and Pastures - Land used permanently (five years or more) to grow herbaceous forage crops.")),
+        p(strong("Land Area Equipped for Irrigation - Area equipped to provide water (via irrigation) to the crops, in all area types."))
       ),
       mainPanel(
         plotlyOutput("choropleth"),
@@ -124,6 +130,7 @@ navbarPage(
   tabPanel(
     "Energy Use",
     titlePanel("Energy Use and Emissions in Agriculture"),
+    h4("This graph allows you to look at the different ways countries consumed or emitted energy, using different energy sources."),
     sidebarLayout(
       sidebarPanel(
         sliderInput(
@@ -144,7 +151,7 @@ navbarPage(
         ),
         selectInput(
           "element",
-          label = "choose the element",
+          label = "Select Domain",
           choices = c(
             "Consumption in Agriculture (in Terajoule)" = "Consumption in Agriculture",
             "Emissions (CH4) (Energy) (in gigagrams)" = "Emissions (CH4) (Energy)",
@@ -161,12 +168,15 @@ navbarPage(
           ),
         selectInput(
           "item",
-          label = "choose the item",
+          label = "Select Energy Type",
           choices = items,
           selected = "Electricity"
         )
       ),
-      mainPanel(plotOutput("trend"))
+      mainPanel(plotOutput("trend"),
+                p(),
+                p(em("Countries that dont utilize a type of energy will have blank graphs for all domains."))
+                )
     )
     )
   )
