@@ -67,15 +67,15 @@ about if there is a correlation between these domains."),
             "Land area equipped for irrigation"
           )
         ),
-        p(strong("Arable Land - Land capable of being ploughed and used to grow crops")),
-        p(strong("Land Under Permanent Crops - Land that is occupied that crops
-                 for long periods, and doesn't need to be replanted after harvests.")),
-        p(strong("Cropland - Areas of land used for the production of adapted
-                 crops for harvest.")),
-        p(strong("Land Under Permanent Meadows and Pastures - Land used
-                 permanently (five years or more) to grow herbaceous forage crops.")),
-        p(strong("Land Area Equipped for Irrigation - Area equipped to provide
-                 water (via irrigation) to the crops, in all area types."))
+        p(strong("Arable Land -"), "Land capable of being ploughed and used to grow crops"),
+        p(strong("Land Under Permanent Crops -"), "Land that is occupied that crops
+                 for long periods, and doesn't need to be replanted after harvests."),
+        p(strong("Cropland -")," Areas of land used for the production of adapted
+                 crops for harvest."),
+        p(strong("Land Under Permanent Meadows and Pastures -")," Land used
+                 permanently (five years or more) to grow herbaceous forage crops."),
+        p(strong("Land Area Equipped for Irrigation -")," Area equipped to provide
+                 water (via irrigation) to the crops, in all area types.")
       ),
       mainPanel(
         plotlyOutput("choropleth"),
