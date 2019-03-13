@@ -65,7 +65,56 @@ navbarPage(
     )
   ),
   tabPanel(
-    "Macro Indicators"
+    "Macro Indicators",
+    titlePanel("Barplot of Economic Distribution of Wealth in Countries"),
+    sidebarLayout(
+      sidebarPanel(
+        selectInput(
+          "country_y",
+          label = "Choose country",
+          choices = c("Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
+                      "Anguilla", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba",
+                      "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh",
+                      "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan",
+                      "Bolivia (Plurinational State of)", "Bosnia and Herzegovina", "Botswana",
+                      "Brazil", "British Virgin Islands", "Brunei Darussalam", "Bulgaria", "Burkina Faso", 
+                      "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Cayman Islands",
+                      "Central African Republic", "Chad", "Chile", "China, Hong Kong SAR", "China, Macao SAR",
+                      "China, mainland", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica",
+                      "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czechia", "Democratic People's Republic of Korea",
+                      "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador",
+                      "Egypt", "El Salvador",
+                      "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France",
+                      "French Polynesia", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece",
+                      "Greenland", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras",
+                      "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)",
+                      "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan",
+                      "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic",
+                      "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
+                      "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania",
+                      "Mauritius", "Mexico", "Micronesia (Federated States of)", "Monaco", "Mongolia", "Montenegro",
+                      "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands",
+                      "Netherlands Antilles (former)", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria",
+                      "Norway", "Occupied Palestinian Territory", "Oman", "Pakistan", "Palau", "Panama",
+                      "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico",
+                      "Qatar", "Republic of Korea", "Republic of Moldova", "Romania", "Russian Federation", "Rwanda",
+                      "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
+                      "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore",
+                      "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "Spain", "Sri Lanka",
+                      "Sudan (former)", "Suriname", "Eswatini", "Sweden", "Switzerland", "Syrian Arab Republic",
+                      "Tajikistan", "Thailand", "North Macedonia", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago",
+                      "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine",
+                      "United Arab Emirates", "United Kingdom", "United Republic of Tanzania", "United States of America",
+                      "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela (Bolivarian Republic of)", "Viet Nam", "Yemen", "Zambia",
+                      "Zimbabwe"
+          )
+        )
+      ),
+      mainPanel(
+        plotOutput("bar_ploty")
+      )
+    )
+  
     
   ),
   tabPanel(
@@ -118,5 +167,7 @@ navbarPage(
         )
       ),
       mainPanel(plotOutput("trend"))
-    )))
+    )
+    )
+  )
   

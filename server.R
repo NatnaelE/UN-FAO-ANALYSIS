@@ -1,7 +1,9 @@
+library("shiny")
 library("dplyr")
+library("leaflet")
 library("tidyr")
 library("ggplot2")
-library("plotly")  
+library("ggmap") 
 #LOAD ALL DATA SETS HERE AT THE BEGINNING
 countries <- read.csv("data/countries_long_lat.csv", stringsAsFactors = FALSE)
 full_pop_data <- read.csv("data/FAOSTAT_population.csv", stringsAsFactors = FALSE)
@@ -16,9 +18,8 @@ my_server <- function(input, output){
     land_data <- full_land_data %>%
       select(
         -Domain.Code, -Domain, -Area.Code, -Element.Code, -Item.Code,
-        -Year.Code, -Unit, -Flag, -Flag.Description
-      ) %>%
-      filter(Year >= 2000, Year <= 2016, Element != "Share in Forest land")
+        -Year.Code, -Unit, -Flag, -Flag.Description) %>%
+        filter(Year >= 2000, Year <= 2016, Element != "Share in Forest land")
     
     colnames(land_data)[colnames(land_data) == "Area"] <- "Country"
     
@@ -31,7 +32,7 @@ my_server <- function(input, output){
     share_agricultural_land <- tot_land_data %>% filter(Element == "Share in Agricultural land")
     # INPUT---------------------------------------
     agri_element_map <- share_agricultural_land %>%
-      filter(Item == input$itemn, Year == input$yearn) %>% ##
+      filter(Item == input$itemn, Year == input$yearn) %>% 
       select(-Latitude..average., -Longitude..average.)
    
     colnames(df)[1] <- "Country"
@@ -92,8 +93,21 @@ my_server <- function(input, output){
   #--------------------------------------------END CHOROPLETH PAGE--------------------------------------------------------------------------------------------  
   
   #--------------------------------------------MACROINDICATOR PAGE--------------------------------------------------------------------------------------------
-  
-  
+  gdp_data <- read.csv("FAOSTAT_macroindicators.csv", stringsAsFactors = FALSE)
+  output$bar_ploty <- renderPlot({
+    gdp_d <- gdp_data %>%
+      select(Area.Code, Area, Element,Item,Year, Unit, Value) %>%
+      filter(Year >= 2000, Year <= 2012)
+    
+    countries <- gdp_d %>%
+      filter(Year == "2000", Area == input$country_y) %>%
+      select(Value)
+    
+    j <- ggplot() + geom_bar(aes(y = Value, x = Year, fill = Item), data = gdp_d, stat = "identity")
+    
+    j
+    
+  })
   
   #--------------------------------------------END MACROINDICATOR PAGE----------------------------------------------------------------------------------------
   
