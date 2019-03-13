@@ -1,4 +1,4 @@
-library(shiny)
+library("shiny")
 library("dplyr")
 library("leaflet")
 library("tidyr")
@@ -9,6 +9,11 @@ countries <- read.csv("data/countries_long_lat.csv", stringsAsFactors = FALSE)
 full_pop_data <- read.csv("data/FAOSTAT_population.csv", stringsAsFactors = FALSE)
 full_land_data <- read.csv("data/FAOSTAT_landuse.csv", stringsAsFactors = FALSE)
 df <- read.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_world_gdp_with_codes.csv", stringsAsFactors = FALSE)
+energy <- read.csv("data/FAOSTAT_data_3-12-2019.csv",stringsAsFactors = F)
+energy[is.na(energy)] <- 0
+years <- range(energy$Year)
+countries <- unique(energy$Country)
+items <- unique(energy$Item)
 
 navbarPage(
   "UN FAO Data Analysis",
@@ -67,8 +72,50 @@ navbarPage(
     
   ),
   tabPanel(
-    "Energy Use"
-    
-  )
+    "Energy Use",
+    titlePanel("the energy use in agriculture"),
+    sidebarLayout(
+      sidebarPanel(
+        sliderInput(
+          "year",
+          label = "choose the year range",
+          min = years[1],
+          max = years[2],
+          value = years,
+          step = 1
+        ),
+        pickerInput(
+          "country",
+          label = "choose the country",
+          choices = countries,
+          selected = "Afghanistan",
+          options = list(`actions-box` = TRUE),
+          multiple = T
+        ),
+        selectInput(
+          "element",
+          label = "choose the element",
+          choices = c(
+            "Consumption in Agriculture (in Terajoule)" = "Consumption in Agriculture",
+            "Emissions (CH4) (Energy) (in gigagrams)" = "Emissions (CH4) (Energy)",
+            "Emissions (CO2eq) from CH4 (Energy) (in gigagrams)" = "Emissions (CO2eq) from CH4 (Energy)",
+            "Emissions (N2O) (Energy) (in gigagrams)" = "Emissions (N2O) (Energy)",
+            "Emissions (CO2eq) from N2O (Energy) (in gigagrams)" = "Emissions (CO2eq) from N2O (Energy)",
+            "Emissions (CO2) (Energy) (in gigagrams)" = "Emissions (CO2) (Energy)",
+            "Emissions (CO2eq) (Energy) (in gigagrams)" = "Emissions (CO2eq) (Energy)",
+            "Implied emission factor for CH4 (in kg/TJ)" = "Implied emission factor for CH4",
+            "Implied emission factor for N2O (in kg/TJ)" = "Implied emission factor for N2O",
+            "Implied emission factor for CO2 (in g/kWh)" = "Implied emission factor for CO2"
+          ),
+          selected = "Consumption in Agriculture"
+          ),
+        selectInput(
+          "item",
+          label = "choose the item",
+          choices = items,
+          selected = "Electricity"
+        )
+      ),
+      mainPanel(plotOutput("trend"))
+    ))
   
-  )
