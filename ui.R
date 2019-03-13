@@ -33,8 +33,8 @@ navbarPage(
   tabPanel(
     "Choropleth",
     titlePanel(strong("Choropleth of different types of Agricultural land use")),
-    h4("This choropleth shows the change of different types of land over time in every country."),
-    
+    h4("This choropleth shows the percentage change of different types of Agricultural land over time in every country."),
+    h1(),
     sidebarLayout(
       sidebarPanel(
         selectInput(
