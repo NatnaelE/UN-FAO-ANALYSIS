@@ -95,7 +95,7 @@ my_server <- function(input, output) {
   output$bar_ploty <- renderPlot({
     gdp_d <- gdp_data %>%
       select(Area.Code, Area, Element, Item, Year, Unit, Value) %>%
-      filter(Year >= 2000, Year <= 2012, 
+      filter(Year >= 2000, Year <= 2016, 
              Item %in% c("Gross Domestic Product", "Gross Output (Agriculture)", "Gross Output (Agriculture, Forestry and Fishing)", "Gross National Income"))
     countries <- gdp_d %>%
       filter(Area == input$country_y) 
