@@ -93,15 +93,15 @@ my_server <- function(input, output){
   #--------------------------------------------END CHOROPLETH PAGE--------------------------------------------------------------------------------------------  
   
   #--------------------------------------------MACROINDICATOR PAGE--------------------------------------------------------------------------------------------
-  gdp_data <- read.csv("FAOSTAT_macroindicators.csv", stringsAsFactors = FALSE)
+  gdp_data <- read.csv("data/FAOSTAT_macroindicators.csv", stringsAsFactors = FALSE)
   output$bar_ploty <- renderPlot({
     gdp_d <- gdp_data %>%
       select(Area.Code, Area, Element,Item,Year, Unit, Value) %>%
       filter(Year >= 2000, Year <= 2012)
     
     countries <- gdp_d %>%
-      filter(Year == "2000", Area == input$country_y) %>%
-      select(Value)
+       filter(Area == input$country_y) %>%
+       select(Value)
     
     j <- ggplot() + geom_bar(aes(y = Value, x = Year, fill = Item), data = gdp_d, stat = "identity")
     
