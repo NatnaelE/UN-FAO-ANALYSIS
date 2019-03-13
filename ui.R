@@ -4,6 +4,7 @@ library("leaflet")
 library("tidyr")
 library("ggplot2")
 library("ggmap")
+
 #LOAD ALL DATA SETS HERE AT THE BEGINNING
 countries <- read.csv("data/countries_long_lat.csv", stringsAsFactors = FALSE)
 full_pop_data <- read.csv("data/FAOSTAT_population.csv", stringsAsFactors = FALSE)
@@ -31,12 +32,12 @@ navbarPage(
   
   tabPanel(
     "Choropleth",
-    titlePanel(strong("Choropleth of different types of land use")),
+    titlePanel(strong("Choropleth of different types of Agricultural land use")),
     h4("This choropleth shows the change of different types of land over time in every country."),
     sidebarLayout(
       sidebarPanel(
         selectInput(
-          "year",
+          "yearn",
           label = "Choose Year",
           choices = c(
             "2000", "2001", "2002", "2003", 
@@ -47,7 +48,7 @@ navbarPage(
           )
         ),
         selectInput(
-          "item",
+          "itemn",
           label = "Choose Land type",
           choices = c(
             "Arable land", "Land under permanent crops", "Cropland", 
@@ -73,7 +74,7 @@ navbarPage(
   ),
   tabPanel(
     "Energy Use",
-    titlePanel("the energy use in agriculture"),
+    titlePanel("Energy Use and Emissions in Agriculture"),
     sidebarLayout(
       sidebarPanel(
         sliderInput(
@@ -84,12 +85,12 @@ navbarPage(
           value = years,
           step = 1
         ),
-        pickerInput(
+        selectInput(
           "country",
           label = "choose the country",
           choices = countries,
           selected = "Afghanistan",
-          options = list(`actions-box` = TRUE),
+          #options = list(`actions-box` = TRUE),
           multiple = T
         ),
         selectInput(
@@ -117,5 +118,5 @@ navbarPage(
         )
       ),
       mainPanel(plotOutput("trend"))
-    ))
+    )))
   

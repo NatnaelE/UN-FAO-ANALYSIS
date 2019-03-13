@@ -31,7 +31,7 @@ my_server <- function(input, output){
     share_agricultural_land <- tot_land_data %>% filter(Element == "Share in Agricultural land")
     # INPUT---------------------------------------
     agri_element_map <- share_agricultural_land %>%
-      filter(Item == input$item, Year == input$year) %>% ##
+      filter(Item == input$itemn, Year == input$yearn) %>% ##
       select(-Latitude..average., -Longitude..average.)
    
     colnames(df)[1] <- "Country"
@@ -79,9 +79,9 @@ my_server <- function(input, output){
         z = ~Value, color = ~Value, colors = "Greens",
         text = ~Country, locations = ~CODE, marker = list(line = l)
       ) %>%
-      colorbar(title = paste0("% of ", input$item), ticksuffix = "%") %>%
+      colorbar(title = paste0("% of ", input$itemn), ticksuffix = "%") %>%
       layout(
-        title = paste0("Percentage of ", input$item, " Worldwide in ", input$year),
+        title = paste0("Percentage of ", input$itemn, " Worldwide in ", input$yearn),
         geo = g
       )
     
@@ -111,10 +111,7 @@ my_server <- function(input, output){
   
   filtered <- reactive({
     data <- energy %>%
-      filter(Year >= input$year[1], Year <= input$year[2])%>%
-      filter(Element == input$element)%>%
-      filter(Country %in% input$country)%>%
-      filter(Item == input$item)
+      filter(Year >= input$year[1], Year <= input$year[2], Element == input$element, Country == input$country,Item == input$item)
     data 
   })
   
