@@ -5,6 +5,8 @@ library("tidyr")
 library("ggplot2")
 library("ggmap")
 
+source("server.R")
+
 # LOAD ALL DATA SETS HERE AT THE BEGINNING
 countries <- read.csv("data/countries_long_lat.csv", stringsAsFactors = FALSE)
 full_pop_data <- read.csv("data/FAOSTAT_population.csv",
@@ -217,7 +219,7 @@ about if there is a correlation between these domains."),
         ),
       mainPanel(
         p("Food Security Indicators by Country"),
-        rbokehOutput("plot")
+        rbokehOutput("plot_food")
       )
         )
   ),
