@@ -5,6 +5,7 @@ library("tidyr")
 library("ggplot2")
 library("ggmap")
 library("plotly")
+library("shinyWidgets")
 source("server.R")
 
 # LOAD ALL DATA SETS HERE AT THE BEGINNING
@@ -243,12 +244,12 @@ about if there is a correlation between these domains within countries across th
           value = years,
           step = 1
         ),
-        selectInput(
+        pickerInput(
           "country",
           label = "choose the country",
           choices = countries,
           selected = "Afghanistan",
-          # options = list(`actions-box` = TRUE),
+           options = list(`actions-box` = TRUE),
           multiple = T
         ),
         selectInput(
