@@ -16,6 +16,34 @@ df <- read.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_wo
 food_data <- read.csv("data/FAOSTAT_foodsecurity.csv", stringsAsFactors = FALSE)
 country_region <- read.csv("data/country_region.csv", stringsAsFactors = FALSE)
 
+# Read in data
+food_data <- read.csv("data/FAOSTAT_foodsecurity.csv", stringsAsFactors = FALSE)
+country_region <- read.csv("data/country_region.csv", stringsAsFactors = FALSE)
+
+#clean region data
+country_region <- country_region %>%
+  select(name, region)
+names(country_region) <- c("Area", "region")
+
+# Clean up
+clean_food_data <- food_data %>%
+  select(Area.Code, Area, Item.Code, Item, Year.Code, Year, Unit, Value)
+
+# Vector of item names for the dropdown
+grouped_by_item <- clean_food_data %>%
+  group_by(Item) %>%
+  filter(Area == "Afghanistan") %>%
+  filter(Item.Code == 21010 |
+           Item.Code == 21034 |
+           Item.Code == 210011 |
+           Item.Code == 21034 |
+           Item.Code == 21033 |
+           Item.Code == 21047 |
+           Item.Code == 21048 |
+           Item.Code == 21042) %>% # Select indicators
+  filter(str_detect(Year.Code, "2000"))
+item_names <- pull(select(grouped_by_item, Item))
+
 my_server <- function(input, output) {
   #--------------------------------------------CHOROPLETH PAGE------------------------------------------------------------------------------------------------- 
   output$choropleth <- renderPlotly({
@@ -118,33 +146,7 @@ my_server <- function(input, output) {
   #--------------------------------------------END MACROINDICATOR PAGE----------------------------------------------------------------------------------------
 
   #--------------------------------------------FOOD-SECURITY PAGE--------------------------------------------------------------------------------------------- 
-    # Read in data
-    food_data <- read.csv("data/FAOSTAT_foodsecurity.csv", stringsAsFactors = FALSE)
-    country_region <- read.csv("data/country_region.csv", stringsAsFactors = FALSE)
-    
-    #clean region data
-    country_region <- country_region %>%
-      select(name, region)
-    names(country_region) <- c("Area", "region")
-    
-    # Clean up
-    clean_food_data <- food_data %>%
-      select(Area.Code, Area, Item.Code, Item, Year.Code, Year, Unit, Value)
-    
-    # Vector of item names for the dropdown
-    grouped_by_item <- clean_food_data %>%
-      group_by(Item) %>%
-      filter(Area == "Afghanistan") %>%
-      filter(Item.Code == 21010 |
-               Item.Code == 21034 |
-               Item.Code == 210011 |
-               Item.Code == 21034 |
-               Item.Code == 21033 |
-               Item.Code == 21047 |
-               Item.Code == 21048 |
-               Item.Code == 21042) %>% # Select indicators
-      filter(str_detect(Year.Code, "2000"))
-    item_names <- pull(select(grouped_by_item, Item))
+  
     
     # Try to make something of this mess
     item_by_country <- reactive({
