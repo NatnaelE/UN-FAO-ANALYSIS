@@ -35,7 +35,7 @@ by the Food and Agriculture Organization of the United Nations. This project
 specifically looks at the datasets of", strong("Annual population, Land Use,
 Economic Macroindicators, Energy Use, and Food Security,"), "to answer questions
 about if there is a correlation between these domains."),
-    img("", src = "http://www.fao.org/uploads/pics/FAO_logo_Blue_3lines_en_01.jpg", align = "center")
+    img("", src = "http://ba.one.un.org/content/dam/unct/bih/agencies/FAO%20logo.png", align = "center")
   ),
 
   tabPanel(
@@ -164,7 +164,12 @@ about if there is a correlation between these domains."),
             "Venezuela (Bolivarian Republic of)", "Viet Nam", "Yemen",
             "Zambia", "Zimbabwe"
           )
-        )
+        ),
+        p(strong("Gross Domestic Product -"), "Measures the total value of final goods and services produced within a given country."),
+        p(strong("Gross National Income -"), "Measures all income of a country's residents and businesses, regardless of where it's produced."),
+        p(strong("Gross Output (Agriculture) -")," Represents the production in monetary terms of farming and livestock raising during a given period"),
+        p(strong("Gross Output (Agriculture, Forestry and Fishing) -")," The total value of products of farming, forestry, animal husbandry and fishery, 
+          and total value of services rendered to support farming, forestry, animal husbandry and fishery activities.")
       ),
       mainPanel(
         plotOutput("bar_ploty")
