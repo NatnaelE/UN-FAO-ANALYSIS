@@ -6,6 +6,7 @@ library("rbokeh")
 library("tidyr")
 library("ggplot2")
 library("ggmap")
+library("plotly")
 
 # LOAD ALL DATA SETS HERE AT THE BEGINNING
 countries <- read.csv("data/countries_long_lat.csv", stringsAsFactors = FALSE)
@@ -101,10 +102,10 @@ my_server <- function(input, output) {
       select(Area.Code, Area, Element, Item, Year, Unit, Value) %>%
       filter(Year >= 2000, Year <= 2016, 
              Item %in% c("Gross Domestic Product", "Gross Output (Agriculture)", "Gross Output (Agriculture, Forestry and Fishing)", "Gross National Income"))
-    countries <- gdp_d %>%
+    countriess <- gdp_d %>%
       filter(Area == input$country_y) 
 
-    j <- ggplot() + geom_bar(aes(y = Value, x = Year, fill = Item), data = countries, stat = "identity")+
+    j <- ggplot() + geom_bar(aes(y = Value, x = Year, fill = Item), data = countriess, stat = "identity")+
       labs(
         title = paste0("Graph of ", input$country_y, "'s Economic Outputs, Products and Income "),
         x = "Year",

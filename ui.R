@@ -4,7 +4,7 @@ library("leaflet")
 library("tidyr")
 library("ggplot2")
 library("ggmap")
-
+library("plotly")
 source("server.R")
 
 # LOAD ALL DATA SETS HERE AT THE BEGINNING
