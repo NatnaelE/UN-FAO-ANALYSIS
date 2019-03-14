@@ -28,7 +28,7 @@ navbarPage(
   "UN FAO Data Analysis",
   tabPanel(
     "Introduction",
-    titlePanel("What this analysis looks at"),
+    titlePanel(strong("What this analysis looks at")),
     p("The Food and Agriculture Organization ", strong("FAO"), "is a specialized
 agency of the United Nations that leads international efforts to defeat hunger
      ."),
@@ -36,12 +36,17 @@ agency of the United Nations that leads international efforts to defeat hunger
 by the Food and Agriculture Organization of the United Nations. This project
 specifically looks at the datasets of", strong("Annual population, Land Use,
 Economic Macroindicators, Energy Use, and Food Security,"), "to answer questions
-about if there is a correlation between these domains."),
+about if there is a correlation between these domains within countries across the globe."),
+    h1(strong("Contents")),
+    p(strong("- Landuse:"), "Looks at different types of landuse."),
+    p(strong("- Macro Indicators:"), "Looks at economic outputs and incomes."),
+    p(strong("- Food Security:")," Looks at nutritional health metrics and access to food and water."),
+    p(strong("- Energy Use:")," Looks at energy emissions through different forms and sources."),
     img("", src = "http://ba.one.un.org/content/dam/unct/bih/agencies/FAO%20logo.png", align = "center")
   ),
 
   tabPanel(
-    "Choropleth",
+    "Landuse",
     titlePanel(strong("Choropleth of different types of
                       Agricultural land use")),
     h4("This choropleth shows the percentage change of different types of
@@ -89,7 +94,7 @@ about if there is a correlation between these domains."),
   ),
   tabPanel(
     "Macro Indicators",
-    titlePanel("Barplot of Economic Distribution of Wealth in Countries"),
+    titlePanel(strong("Barplot of Economic Distribution of Wealth in Countries")),
     sidebarLayout(
       sidebarPanel(
         selectInput(
@@ -180,7 +185,7 @@ about if there is a correlation between these domains."),
   ),
   tabPanel(
     "Food Security",
-    titlePanel("Food Security Indicators"),
+    titlePanel(strong("Food Security Indicators")),
     sidebarLayout(
       sidebarPanel(
         selectInput(
@@ -225,7 +230,7 @@ about if there is a correlation between these domains."),
   ),
   tabPanel(
     "Energy Use",
-    titlePanel("Energy Use and Emissions in Agriculture"),
+    titlePanel(strong("Energy Use and Emissions in Agriculture")),
     h4("This graph allows you to look at the different ways countries consumed
        or emitted energy, using different energy sources."),
     sidebarLayout(
